@@ -2,8 +2,17 @@
 images/*
 node_modules
 
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+*.html
+
 # Files
 .gitignore
 .prettierignore
 package-lock.json
-
+**/.git
+**/.svn
+**/.hg
