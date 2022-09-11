@@ -7,9 +7,9 @@
     "build": "tsc",
     "test": "jasmine",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix",
     "dev": "nodemon src/index.ts",
     "start": "node build/index.js",
-    "lint:fix": "npm run lint --fix",
     "prebuild": "npm run lint && npm run test",
     "format": "prettier \"src/**/*.ts\" --write "
   },
@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "eslint": "^8.23.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.19",
