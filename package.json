@@ -1,0 +1,25 @@
+{
+  "name": "resize-it",
+  "version": "1.0.0",
+  "description": "An image processing app built with node.js, TypeScript & sharp",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "Udacity",
+    "Image",
+    "Processing",
+    "API",
+    "Node",
+    "TypeScript",
+    "Sharp",
+    "Jasmine",
+    "Unit",
+    "Testing",
+    "ESLint",
+    "Prettier"
+  ],
+  "author": "Ahmed Ismail Abu Qahf",
+  "license": "MIT"
+}
