@@ -13,7 +13,7 @@ dotenv.config();
 
 // Create express app
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 // logger
 app.use(morgan('common'));
@@ -32,5 +32,5 @@ app.use(indexRouter);
 
 // start app
 app.listen(PORT, () => {
-  console.log(`🚀 Server started at http://localhost:${PORT}`);
+  console.log(`🚀 Server started at http://localhost:${PORT} 🚀`);
 });
