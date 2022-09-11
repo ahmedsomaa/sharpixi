@@ -16,6 +16,23 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 1
+    'prettier/prettier': 1,
+    'default-case': 2,
+    'no-console': 1,
+    'prefer-const': 2,
+    'no-new-object': 2,
+    'no-array-constructor': 2,
+    'prefer-object-spread': 2,
+    'array-callback-return': 2,
+    'object-shorthand': 2,
+    'prefer-destructuring': 2,
+    'prefer-template': 2,
+    'func-style': ['error', 'expression'],
+    'prefer-rest-params': 2,
+    'default-param-last': 2,
+    'space-before-blocks': 2,
+    'space-before-function-paren': 2,
+    'prefer-spread': 2,
+    'function-paren-newline': 2
   }
 };
