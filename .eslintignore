@@ -1,0 +1,15 @@
+# Folders
+node_modules
+public
+build
+spec
+
+#Files
+.env
+.gitignore
+.prettierrc
+.prettierignore
+package-lock.json
+package.json
+README.md
+tsconfig.json
