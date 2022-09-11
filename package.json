@@ -21,5 +21,8 @@
     "Prettier"
   ],
   "author": "Ahmed Ismail Abu Qahf",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
 }
