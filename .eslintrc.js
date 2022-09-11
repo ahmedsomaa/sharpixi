@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'airbnb',
     'prettier'
   ],
   overrides: [],
@@ -16,6 +17,6 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 1 // display styling issues as WARN
+    'prettier/prettier': 1
   }
 };
