@@ -10,7 +10,6 @@
     "lint:fix": "eslint . --fix",
     "dev": "nodemon src/index.ts",
     "start": "node build/index.js",
-    "prebuild": "npm run lint && npm run test",
     "format": "prettier \"src/**/*.ts\" --write "
   },
   "keywords": [
