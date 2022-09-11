@@ -4,7 +4,14 @@
   "description": "An image processing app built with node.js, TypeScript & sharp",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jasmine"
+    "build": "tsc",
+    "test": "jasmine",
+    "lint": "eslint .",
+    "dev": "nodemon src/index.ts",
+    "start": "node build/index.js",
+    "lint:fix": "npm run lint --fix",
+    "prebuild": "npm run lint && npm run test",
+    "format": "prettier \"src/**/*.ts\" --write "
   },
   "keywords": [
     "Udacity",
