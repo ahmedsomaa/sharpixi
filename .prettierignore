@@ -1,0 +1,9 @@
+# Directories
+images/*
+node_modules
+
+# Files
+.gitignore
+.prettierignore
+package-lock.json
+
