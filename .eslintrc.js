@@ -31,8 +31,6 @@ module.exports = {
     'prefer-rest-params': 2,
     'default-param-last': 2,
     'space-before-blocks': 2,
-    'space-before-function-paren': 2,
-    'prefer-spread': 2,
-    'function-paren-newline': 2
+    'prefer-spread': 2
   }
 };
