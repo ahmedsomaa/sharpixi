@@ -58,6 +58,32 @@ const resize = async (req: Request, res: Response) => {
   }
 };
 
+const convert = async (req: Request, res: Response) => {
+  // get query params validaion errors
+  const result = validationResult(req).formatWith(({ param, msg }) => ({
+    param,
+    msg
+  }));
+
+  // check for empty query string
+  if (_.isEmpty(req.query)) {
+    return res
+      .status(400)
+      .render('error', { code: 400, message: 'Query string cannot be empty'.toUpperCase() });
+    // check for validation error
+  } else if (!result.isEmpty()) {
+    const errors = result.array();
+    const grouped = _.groupBy(errors, ({ param }) => param);
+    return res.status(422).render('error', {
+      code: 422,
+      message: 'Invalid Values for Query String'.toUpperCase(),
+      errors: grouped
+    });
+  }
+  res.send('Converted');
+};
+
 export default {
-  resize
+  resize,
+  convert
 };
