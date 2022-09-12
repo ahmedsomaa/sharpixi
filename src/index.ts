@@ -9,7 +9,7 @@ import helmet from 'helmet';
 import indexRouter from './routes';
 import morgan from 'morgan';
 import path from 'path';
-import { resolveImageDirectoryPath } from './helpers/image';
+import { resolveImageDirectoryPath } from './helpers/image.helper';
 
 // configure dotenv
 dotenv.config();
@@ -37,10 +37,13 @@ app.use(compression());
 // serve favicon
 app.use(favicon(path.join(__dirname, '..', 'images', 'favicon.ico')));
 
+// serve static image files
 app.use(express.static('images'));
 
 // use application routes
 app.use(indexRouter);
+
+// console.log(app);
 
 // start app
 app.listen(PORT, (): void => {
@@ -48,7 +51,8 @@ app.listen(PORT, (): void => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-  console.log(`Server started at http://localhost:${PORT} ...`);
+  // eslint-disable-next-line no-console
+  console.log(`Server started at http://localhost:${PORT}...`);
 });
 
 export default app;

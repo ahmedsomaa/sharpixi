@@ -1,6 +1,6 @@
+import ViewsController from '../controllers/views.controller';
 import express from 'express';
 import imageRoutes from './api/image';
-import indexController from '../controllers/index';
 
 const indexRoute = express.Router();
 
@@ -8,6 +8,6 @@ const indexRoute = express.Router();
 indexRoute.use('/images', imageRoutes);
 
 // main router
-indexRoute.get('/', indexController.homePage);
+indexRoute.get('/', ViewsController.landing);
 
 export default indexRoute;
