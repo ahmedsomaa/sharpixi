@@ -1,6 +1,6 @@
 import { query } from 'express-validator';
 
-export const queryValidator = [
+export const resizeQueryValidator = [
   query('filename')
     .not()
     .isEmpty()
@@ -19,4 +19,19 @@ export const queryValidator = [
     .withMessage('cannot be empty')
     .isInt()
     .withMessage('must be a number')
+];
+
+export const convertQueryValidator = [
+  query('filename')
+    .not()
+    .isEmpty()
+    .withMessage('cannot be empty')
+    .isString()
+    .withMessage('msut be a string'),
+  query('format')
+    .not()
+    .isEmpty()
+    .withMessage('cannot be empty')
+    .custom((val) => ['png', 'jpg', 'svg', 'avif', 'jpeg', 'webp'].includes(val))
+    .withMessage((ext) => `.${ext ? ext : 'ext'} not supprted`)
 ];
