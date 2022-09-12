@@ -58,8 +58,6 @@ export const resizeImage = async ({
       resolveImageDirectoryPath('thumbs'),
       `${filePath.name}_${height}x${width}${filePath.ext}`
     );
-    console.log(filePath.ext);
-
     await sharp(source).resize(width, height).toFile(target);
     return target;
   } catch (error) {
@@ -73,4 +71,4 @@ export const resizeImage = async ({
  * @returns {string} the resolved path of the given directory
  */
 export const resolveImageDirectoryPath = (directory: ImageDirectory): string =>
-  path.join(__dirname, '..', '..', 'public', 'images', directory);
+  path.join(__dirname, '..', '..', 'images', directory);
