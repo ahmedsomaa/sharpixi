@@ -27,6 +27,7 @@ const resize = async (req: Request, res: Response) => {
     const grouped = _.groupBy(errors, ({ param }) => param);
     return res.json(grouped);
   }
+
   // desirialize query string
   const { filename, width, height } = req.query as unknown as ImageQueryString;
 
@@ -34,8 +35,6 @@ const resize = async (req: Request, res: Response) => {
   const inThumbs = await imageExists(`${filename}_${height}x${width}`, 'thumbs');
 
   if (!inThumbs) {
-    console.log('not in thumb');
-
     const inOriginal = await imageExists(filename, 'original');
     return inOriginal
       ? res.sendFile(
@@ -45,10 +44,8 @@ const resize = async (req: Request, res: Response) => {
             height: +height
           })
         )
-      : res.send('File not found');
+      : res.send('File does not exist');
   } else {
-    console.log('in thumb');
-
     return res.sendFile(path.join(resolveImageDirectoryPath('thumbs'), inThumbs));
   }
 };
