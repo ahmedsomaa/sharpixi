@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { getAllImages } from '../helpers/image.helper';
 import { mapImageWithPath } from '../util';
 
-const landing = async (req: Request, res: Response) => {
+const resizer = async (req: Request, res: Response) => {
   const original = await getAllImages('original');
   const thumbs = await getAllImages('thumbs');
   const mapped = original?.map(mapImageWithPath);
@@ -16,6 +16,16 @@ const landing = async (req: Request, res: Response) => {
   });
 };
 
+const converter = async (req: Request, res: Response) => {
+  const original = await getAllImages('original');
+  const mapped = original?.map(mapImageWithPath);
+  res.render('converter', {
+    original: mapped,
+    year: new Date().getFullYear()
+  });
+};
+
 export default {
-  landing
+  resizer,
+  converter
 };
