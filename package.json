@@ -8,7 +8,6 @@
     "test": "jasmine",
     "lint": "eslint .",
     "clean": "rimraf build",
-    "pretest": "npm run build",
     "prebuild": "npm run clean",
     "lint:fix": "eslint . --fix",
     "dev": "nodemon src/index.ts",
