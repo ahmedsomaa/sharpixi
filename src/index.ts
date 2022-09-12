@@ -19,7 +19,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // set the view engine to ejs
-app.set('view engine', 'ejs');
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // logger
@@ -35,7 +35,9 @@ app.use(cors());
 app.use(compression());
 
 // serve favicon
-app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '..', 'images', 'favicon.ico')));
+
+app.use(express.static('images'));
 
 // use application routes
 app.use(indexRouter);
