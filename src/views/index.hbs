@@ -3,7 +3,6 @@
     <meta charset='UTF-8' />
     <title>Resize It</title>
     <link rel='icon' type='image/x-icon' href='favicon.ico' />
-
     <!-- CSS (load bootstrap from a CDN) -->
     <!-- CSS only -->
     <link
@@ -20,9 +19,11 @@
       rel='stylesheet'
     />
     <style>
-      body { padding-top: 50px; } h1, input[type='submit'] { font-family: 'Space Grotesk',
-      sans-serif; font-weight: 700; } h2, label { font-family: 'Space Grotesk', sans; font-weight:
-      300; } p, li, select { font-family: 'Inter', sans; font-weight: 400; }
+      body { padding-top: 50px; } 
+      h1, input[type='submit'] { font-family: 'Space Grotesk', sans-serif; font-weight: 700; } 
+      h2, label { font-family: 'Space Grotesk', sans; font-weight:300; } 
+      p, li, select { font-family: 'Inter', sans; font-weight: 400; } 
+      .option { font-family: 'Space Grotesk'; font-weight: 400; } 
     </style>
   </head>
   <body class='container bg-light'>
@@ -32,6 +33,10 @@
           <img src='logo.svg' height='48' width='48' alt='Image with shrink arrows' />
           <h1 class='fs-1'>Resize It</h1>
           <p class='fs-4'>An awesome image processing API</p>
+          <div class="d-flex flex-row gap-3">
+            <a href="/" class="option fs-4 fw-bold text-success">Reszier</a>
+            <a href="/converter" class="option fs-4 fw-bold text-success">Converter</a>
+          </div>
         </div>
       </div>
     </main>
