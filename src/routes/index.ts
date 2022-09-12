@@ -1,16 +1,16 @@
 import express, { Request, Response } from 'express';
 
-import imageRouter from './api/image';
+import imageRoutes from './api/image';
 import path from 'path';
 
-const router = express.Router();
+const indexRoute = express.Router();
 
 // main router
-router.get('/', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
+indexRoute.get('/', (req: Request, res: Response) => {
+  res.render(path.join(__dirname, '..', '..', 'public', 'index'));
 });
 
 // image router
-router.use('/images', imageRouter);
+indexRoute.use('/images', imageRoutes);
 
-export default router;
+export default indexRoute;
