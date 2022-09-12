@@ -1,0 +1,112 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Resize It - Converter</title>
+    <link rel='icon' type='image/x-icon' href='favicon.ico' />
+    <!-- CSS (load bootstrap from a CDN) -->
+    <!-- CSS only -->
+    <link
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+      integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT'
+      crossorigin='anonymous'
+    />
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;900&family=Space+Grotesk:wght@300;400;700&display=swap'
+      rel='stylesheet'
+    />
+    <style>
+        body { padding-top: 50px; } 
+        h1, input[type='submit'] { font-family: 'Space Grotesk', sans-serif; font-weight: 700; } 
+        h2, label { font-family: 'Space Grotesk', sans; font-weight:300; } 
+        p, li, select { font-family: 'Inter', sans; font-weight: 400; } 
+        .option { font-family: 'Space Grotesk'; font-weight: 400; } 
+    </style>
+  </head>
+  <body class='container bg-light'>
+    <main>
+      <div class='jumbotron'>
+        <div class='d-flex flex-column align-items-center justify-content-center'>
+          <img src='logo.svg' height='48' width='48' alt='Image with shrink arrows' />
+          <h1 class='fs-1'>Resize It</h1>
+          <p class='fs-4'>An awesome image processing API</p>
+          <div class="d-flex flex-row gap-3">
+            <a href="/" class="option fs-4 fw-bold text-success">Reszier</a>
+            <a href="/converter" class="option fs-4 fw-bold text-success">Converter</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <hr />
+
+    <div>
+      <h2 class='text-decoration-underline'>Converted images</h2>
+      {{#if thumbs}}
+        <div class='row g-3'>
+          {{#each thumbs}}
+            <div class='col-md-4'>
+              <img class='img-thumbnail rounded' src='./thumbs/{{this.path}}' alt='{{this.name}}' />
+            </div>
+          {{/each}}
+        </div>
+      {{else}}
+         <div style="font-family: 'Inter'; font-weight: 300" class="fs-4 alert alert-info" role="alert">
+          No images have been processed yet...
+        </div>
+      {{/if}}
+    </div>
+
+    <hr />
+
+    <div>
+      <h2 class='text-decoration-underline'>Try it</h2>
+      {{#if original}}
+        <p>Choose and image and choose preferred format</p>
+        <form action='/images/convert' method='get' class='g-3'>
+          <div class='row'>
+            <div class='col-md-4'>
+              <label class='form-label' for='filename'>Filename</label>
+              <select id='filename' name='filename' class='form-select' required>
+                <option value=''>Select an image</option>
+                {{#each original}}
+                  <option value='{{this.name}}'>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class='col-md-4'>
+              <label class='form-label' for='format'>Format</label>
+              <select id='format' name='format' class='form-select' required>
+                <option value="png">png</option>
+                <option value="jpg">jpg</option>
+                <option value="svg">svg</option>
+                <option value="avif">avif</option>
+                <option value="jpeg">jpeg</option>
+                <option value="webp">webp</option>
+              </select>
+            </div>
+          </div>
+          <div class='d-grid my-3'>
+            <input class='btn btn-success fw-bold lh-lg fs-5' type='submit' value='Resize' />
+          </div>
+        </form>
+      </div>
+    {{else}}
+      <div style="font-family: 'Inter'; font-weight: 300" class="fs-4 alert alert-danger" role="alert">
+        Sorry, you can't try it now! There are no images in 
+        <span class="rounded-pill text-dark">'/images/original'</span>
+      </div>
+    {{/if}}
+
+    <hr />
+
+    <footer>
+      <p class='text-center text-muted'>
+        Made with <span class="text-danger">&hearts;</span> by Ahmed Ismail Abu Qahf &copy; {{year}}
+      </p>
+    </footer>
+  </body>
+</html>
