@@ -4,7 +4,7 @@ import {
   imageExists,
   resizeImage,
   resolveImageDirectoryPath
-} from '../helpers/image';
+} from '../helpers/image.helper';
 
 import { ImageQueryString } from '../interfaces';
 import _ from 'lodash';
@@ -20,12 +20,18 @@ const resize = async (req: Request, res: Response) => {
 
   // check for empty query string
   if (_.isEmpty(req.query)) {
-    return res.send('Query string cannot be empty');
+    return res
+      .status(400)
+      .render('error', { code: 400, message: 'Query string cannot be empty'.toUpperCase() });
     // check for validation error
   } else if (!result.isEmpty()) {
     const errors = result.array();
     const grouped = _.groupBy(errors, ({ param }) => param);
-    return res.json(grouped);
+    return res.status(422).render('error', {
+      code: 422,
+      message: 'Invalid Values for Query String'.toUpperCase(),
+      errors: grouped
+    });
   }
 
   // desirialize query string
@@ -44,22 +50,14 @@ const resize = async (req: Request, res: Response) => {
             height: +height
           })
         )
-      : res.send('File does not exist');
+      : res
+          .status(404)
+          .render('error', { code: 404, message: 'File does not exist'.toUpperCase() });
   } else {
     return res.sendFile(path.join(resolveImageDirectoryPath('thumbs'), inThumbs));
   }
 };
 
-const all = async (req: Request, res: Response) => {
-  try {
-    const images = await getAllImages('original');
-    return res.json(images !== null ? images : []);
-  } catch (error) {
-    return [];
-  }
-};
-
 export default {
-  all,
   resize
 };

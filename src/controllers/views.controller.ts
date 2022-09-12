@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import { getAllImages } from '../helpers/image';
+import { getAllImages } from '../helpers/image.helper';
 import { mapImageWithPath } from '../util';
 
-const homePage = async (req: Request, res: Response) => {
+const landing = async (req: Request, res: Response) => {
   const original = await getAllImages('original');
   const thumbs = await getAllImages('thumbs');
   const mapped = original?.map(mapImageWithPath);
@@ -17,5 +17,5 @@ const homePage = async (req: Request, res: Response) => {
 };
 
 export default {
-  homePage
+  landing
 };
