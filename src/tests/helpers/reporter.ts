@@ -4,7 +4,7 @@ import SuiteInfo = jasmine.SuiteInfo;
 
 class CustomProcessor extends DisplayProcessor {
   public displayJasmineStarted(info: SuiteInfo, log: string): string {
-    return `Resize It Image Processing API Testing Suite -- ${log}`;
+    return `Resize It Testing Suites -- ${log}`;
   }
 }
 
