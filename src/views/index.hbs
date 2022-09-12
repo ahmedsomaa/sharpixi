@@ -49,7 +49,9 @@
           {{/each}}
         </div>
       {{else}}
-        <p class='ps-4'>No images have been processed yet</p>
+         <div style="font-family: 'Inter'; font-weight: 300" class="fs-4 alert alert-info" role="alert">
+          No images have been processed yet...
+        </div>
       {{/if}}
     </div>
 
@@ -57,10 +59,9 @@
 
     <div>
       <h2 class='text-decoration-underline'>Try it</h2>
-      <p>Choose and image and provide preferred widht and height</p>
-
       {{#if original}}
-        <form action='/images' method='get' class='g-3'>
+        <p>Choose and image and provide preferred width and height</p>
+        <form action='/images/resize' method='get' class='g-3'>
           <div class='row'>
             <div class='col-md-4'>
               <label class='form-label' for='filename'>Filename</label>
@@ -81,12 +82,15 @@
             </div>
           </div>
           <div class='d-grid my-3'>
-            <input class='btn btn-primary fw-bold lh-lg fs-5' type='submit' value='Resize' />
+            <input class='btn btn-success fw-bold lh-lg fs-5' type='submit' value='Resize' />
           </div>
         </form>
       </div>
     {{else}}
-      <p class="fs-4">There are no images in '/images/original'</p>
+      <div style="font-family: 'Inter'; font-weight: 300" class="fs-4 alert alert-danger" role="alert">
+        Sorry, you can't try it now! There are no images in 
+        <span class="rounded-pill text-dark">'/images/original'</span>
+      </div>
     {{/if}}
 
     <hr />
