@@ -5,10 +5,10 @@ import viewsController from '../controllers/views.controller';
 
 const indexRoute = express.Router();
 
-// image router
-indexRoute.use('/images', imageRoutes);
+// api
+indexRoute.use('/api', imageRoutes);
 
-// main router
+// views
 indexRoute.get('/', ViewsController.resizer);
 indexRoute.get('/converter', viewsController.converter);
 
