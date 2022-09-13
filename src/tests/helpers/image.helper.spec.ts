@@ -1,15 +1,23 @@
-import { getAllImages, imageExists, resolveImageDirectoryPath } from '../../helpers/image.helper';
+import { ImageFile, SharpResult } from '../../interfaces';
+import {
+  getAllImages,
+  imageExists,
+  resolveImageDirectoryPath,
+  resolveToSourceAndTarget
+} from '../../helpers/image.helper';
 
 describe('-- Image helper Tests Suite', (): void => {
   describe('--- imageExists method', (): void => {
     const filename = 'fjord.jpg';
     it('sholud return string if file exists in directory', async (): Promise<void> => {
-      const resolved = await imageExists('fjord', 'original');
-      expect(resolved).toEqual(filename);
+      const resolved: SharpResult = await imageExists('fjord', 'original');
+      expect(resolved.success).toEqual(true);
+      expect(resolved.data).toEqual(filename);
     });
     it('should return empty string if file does not exist in directory', async (): Promise<void> => {
-      const resolved = await imageExists('fjord', 'thumbs');
-      expect(resolved).toEqual('');
+      const resolved: SharpResult = await imageExists('fjord', 'thumbs');
+      expect(resolved.success).toEqual(false);
+      expect(resolved.data).toEqual('File does not exist');
     });
   });
 
@@ -28,6 +36,13 @@ describe('-- Image helper Tests Suite', (): void => {
         'C:\\Users\\ahmedsomaa\\Documents\\Projects\\eg-fwd\\image-processing-api\\images\\original'
       );
       expect(typeof directoryPath).toBe('string');
+    });
+  });
+
+  describe('--- resolveToSourceAndTarget', (): void => {
+    it('should return an object with source & target keys', (): void => {
+      const resolved: ImageFile = resolveToSourceAndTarget('fjord.jpg', 'fjord_converted.jpg');
+      expect(Object.keys(resolved)).toEqual(['source', 'target']);
     });
   });
 });
