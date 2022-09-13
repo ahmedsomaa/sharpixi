@@ -1,9 +1,11 @@
+import { convertQueryValidator, resizeQueryValidator } from '../../middleware';
+
 import express from 'express';
 import imageController from '../../controllers/image.controller';
-import { queryValidator } from '../../middleware';
 
 const imageRoutes = express.Router();
 
-imageRoutes.get('/resize', queryValidator, imageController.resize);
+imageRoutes.get('/resize', resizeQueryValidator, imageController.resize);
+imageRoutes.get('/convert', convertQueryValidator, imageController.convert);
 
 export default imageRoutes;
