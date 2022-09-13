@@ -39,7 +39,7 @@ describe('-- Image helper Tests Suite', (): void => {
     });
   });
 
-  describe('--- resolveToSourceAndTarget', (): void => {
+  describe('--- resolveToSourceAndTarget method', (): void => {
     it('should return an object with source & target keys', (): void => {
       const resolved: ImageFile = resolveToSourceAndTarget('fjord.jpg', 'fjord_converted.jpg');
       expect(Object.keys(resolved)).toEqual(['source', 'target']);
