@@ -1,8 +1,7 @@
-import { ImageDirectory, ImageQueryString } from '../interfaces';
+import { ImageDirectory, ImageFile, SharpResult } from '../interfaces';
 
 import fs from 'fs/promises';
 import path from 'path';
-import sharp from 'sharp';
 
 /**
  * checks for a file in a given directory
@@ -11,16 +10,26 @@ import sharp from 'sharp';
  * @param {validImageDirectory} directory - name of the directory to look in
  * @returns {Promise<boolean>} if the file is found in the directory or not
  */
-export const imageExists = async (filename: string, directory: ImageDirectory): Promise<string> => {
+export const imageExists = async (
+  filename: string,
+  directory: ImageDirectory
+): Promise<SharpResult> => {
   try {
     const images = await getAllImages(directory);
     if (!images) {
-      return '';
+      return { success: false, data: `${directory} directory is empty.` };
     } else {
-      return images.filter((image) => image.split('.')[0] === filename).toString();
+      const hasMatch = images.filter((image) => image.split('.')[0] === filename);
+      return hasMatch.length !== 0
+        ? { success: true, data: hasMatch.toString() }
+        : { success: false, data: 'File does not exist' };
     }
-  } catch {
-    return '';
+  } catch (error) {
+    return {
+      success: false,
+      data: (error as Error).name,
+      errors: { 'imageHelper::imageExists': { msg: (error as Error).message } }
+    };
   }
 };
 
@@ -42,33 +51,24 @@ export const getAllImages = async (directory: ImageDirectory): Promise<string[] 
 };
 
 /**
- * resize an image with the given sizes
- * @param {ImageQueryString} - filename, width, height to use for reszie
- * @returns {Promise<string>} the new resized file path
- */
-export const resizeImage = async ({
-  width,
-  height,
-  filename
-}: ImageQueryString): Promise<string> => {
-  try {
-    const filePath = path.parse(filename);
-    const source = path.join(resolveImageDirectoryPath('original'), filename);
-    const target = path.join(
-      resolveImageDirectoryPath('thumbs'),
-      `${filePath.name}_${height}x${width}${filePath.ext}`
-    );
-    await sharp(source).resize(width, height).toFile(target);
-    return target;
-  } catch (error) {
-    return '';
-  }
-};
-
-/**
  * resolves a path for a given directory name
  * @param {validImageDirectory} directory - name of the directorty to resolve its path
  * @returns {string} the resolved path of the given directory
  */
 export const resolveImageDirectoryPath = (directory: ImageDirectory): string =>
   path.join(__dirname, '..', '..', 'images', directory);
+
+/**
+ * Resolves a file to source & target paths
+ * @param {string} inputFileName - name of the file to resolve to source & target
+ * @param {string} outputFileName - name of the preferred output name
+ * @returns an object with both source & target paths for an image file
+ */
+export const resolveToSourceAndTarget = (
+  inputFileName: string,
+  outputFileName: string
+): ImageFile => {
+  const source = path.join(resolveImageDirectoryPath('original'), inputFileName);
+  const target = path.join(resolveImageDirectoryPath('thumbs'), outputFileName);
+  return { source, target };
+};
