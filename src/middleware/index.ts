@@ -33,5 +33,5 @@ export const convertQueryValidator = [
     .isEmpty()
     .withMessage('cannot be empty')
     .custom((val) => ['png', 'jpg', 'svg', 'avif', 'jpeg', 'webp'].includes(val))
-    .withMessage((ext) => `.${ext ? ext : 'ext'} not supprted`)
+    .withMessage((ext) => `.${ext ? ext : 'ext'} is not supprted`)
 ];
