@@ -18,9 +18,11 @@ const resizer = async (req: Request, res: Response) => {
 
 const converter = async (req: Request, res: Response) => {
   const original = await getAllImages('original');
+  const thumbs = await getAllImages('thumbs');
   const mapped = original?.map(mapImageWithPath);
   res.render('converter', {
     original: mapped,
+    thumbs,
     year: new Date().getFullYear()
   });
 };
