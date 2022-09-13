@@ -32,4 +32,33 @@ describe('-- Image Router Tests Suite', (): void => {
       });
     });
   });
+
+  describe('--- GET /images/convert Request', (): void => {
+    it('should return 400 for empty query string', async (): Promise<void> => {
+      const response = await request.get('/images/convert');
+      expect(response.status).toEqual(400);
+      expect(response.type).toEqual('text/html');
+    });
+
+    it('should return 422 for invalid query string parameters', async (): Promise<void> => {
+      const response = await request.get('/images/convert?filename=&format=hello');
+      expect(response.status).toEqual(422);
+      expect(response.type).toEqual('text/html');
+    });
+
+    it('should return 404 if image does not exist', async (): Promise<void> => {
+      const response = await request.get('/images/convert?filename=myimage&format=png');
+      expect(response.status).toEqual(404);
+      expect(response.type).toEqual('text/html');
+    });
+
+    it('should return 200 with converted image if image exists', async (): Promise<void> => {
+      const images = ['encenadaport', 'fjord', 'icelandwaterfall', 'palmtunnel', 'santamonica'];
+      images.forEach(async (img) => {
+        const resp = await request.get(`/images/convert?filename=${img}&format=png`);
+        expect(resp.status).toEqual(200);
+        expect(resp.type).toEqual('image/png');
+      });
+    });
+  });
 });
