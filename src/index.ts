@@ -50,6 +50,8 @@ app.listen(PORT, (): void => {
   const dir = resolveImageDirectoryPath('thumbs');
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
+    // eslint-disable-next-line no-console
+    console.log('[fs::mkdirSync] successfull created thumbs directory.');
   }
   // eslint-disable-next-line no-console
   console.log(`Server started at http://localhost:${PORT}...`);
