@@ -13,6 +13,8 @@ An awesome image processing api built with Node.js, TypeScript & [Sharp](https:/
 
 ## Architecture
 
+![diagram](https://user-images.githubusercontent.com/29373629/190209541-58dbb03b-955a-457e-99e5-983fbe288120.jpg)
+
 ## Run locally
 
 - Install dependencies `npm install`.
@@ -75,8 +77,6 @@ The tests are written in jasmine. To run the tests: `npm run build && npm run te
   `?filename=fjord&format=png`. Supported conversion types are `[jpg, png, avif, jpeg, wbep]`.
 
 - `/{original | thumbs}/{image_name}` to serve static image files for example `/original/fjord.jpg`.
-
-## Architecture
 
 ## Demo
 
