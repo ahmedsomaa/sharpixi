@@ -19,10 +19,13 @@ export interface ConvertQuery {
   filename: string;
 }
 
+// interface for image file paths
 export interface ImageFile {
   source: string;
   target: string;
 }
+
+// interface for handling results from sharp
 export interface SharpResult {
   data: string;
   errors?: object;
