@@ -1,5 +1,5 @@
 {
-  "name": "resize-it",
+  "name": "sharpixi",
   "version": "1.0.0",
   "description": "An image processing app built with node.js, TypeScript & sharp",
   "main": "src/index.ts",
