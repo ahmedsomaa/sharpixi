@@ -109,10 +109,18 @@ const convert = async (req: Request, res: Response) => {
   // desirialize query string
   const { filename, format } = req.query as unknown as ConvertQuery;
   // check for file in images/thumbs
-  const checkThumbs: SharpResult = await imageExists(`${filename}_converted.${format}}`, 'thumbs');
+  const checkThumbs: SharpResult = await imageExists(`${filename}_converted`, 'thumbs');
   if (checkThumbs.success) {
     // return from thumbs
-    return res.sendFile(path.join(resolveImageDirectoryPath('thumbs'), checkThumbs.data));
+    return res.sendFile(
+      path.join(
+        resolveImageDirectoryPath('thumbs'),
+        checkThumbs.data
+          .split(',')
+          .filter((img) => img.split('.')[1] === format)
+          .toString()
+      )
+    );
   } else {
     // found in original, resize it
     const checkOriginal: SharpResult = await imageExists(filename, 'original');
