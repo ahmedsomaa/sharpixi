@@ -26,7 +26,11 @@ An awesome image processing api built with Node.js, TypeScript & [Sharp](https:/
 
 ### Resizer Feature
 
-<video src='./demos/resizer.mp4' width="800"/>
+
+
+https://user-images.githubusercontent.com/29373629/190122357-71d15abf-d7f0-42db-a011-2e6dac3fe2a1.mp4
+
+
 
 ### Converter Feature
 
