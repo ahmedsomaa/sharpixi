@@ -1,18 +1,12 @@
 import app from '../../index';
-import supertest from 'supertest';
+import request from 'supertest';
 
-describe('-- Main Router Tests Suite', () => {
-  const request = supertest(app);
-
-  describe('--- GET / Request', () => {
-    it('should return 200', async () => {
-      const response = await request.get('/');
-      expect(response.statusCode).toBe(200);
-    });
-
-    it('should return html document', async () => {
-      const response = await request.get('/');
-      expect(response.type).toBe('text/html');
+describe('-- Main Router Tests Suite', (): void => {
+  describe('--- GET / Request', (): void => {
+    it('should return 200 and html document', async (): Promise<void> => {
+      const { type } = await request(app).get('/');
+      expect(200);
+      expect(type).toBe('text/html');
     });
   });
 });
