@@ -30,7 +30,11 @@
     "ESLint",
     "Prettier"
   ],
-  "author": "Ahmed Ismail Abu Qahf",
+  "author": {
+    "name": "Ahmed Ismail Abu Qahf",
+    "email": "ahmedsomaa@aucegypt.edu",
+    "url": "https://github.com/ahmedsomaa"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/compression": "^1.7.2",
