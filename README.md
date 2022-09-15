@@ -57,6 +57,12 @@ The tests are written in jasmine. To run the tests: `npm run build && npm run te
     - Return directory full path as string
   - `resolveToSourceAndTarget` method
     - Return an object with source & target keys
+- Sharp Service Tests Suit
+  - `resize` service
+    - Should delete the resized file if exists & create a new fresh one
+    - Return "File does not exist" if file does not exist in directory
+  - `convert` service
+    - Should delete the resized file if exists & create a new fresh one
 
 ## Available Scripts
 
