@@ -16,7 +16,7 @@ describe('-- Express App Tests Suits', (): void => {
   it('should serve static files', (): void => {
     const images = ['encenadaport', 'fjord', 'icelandwaterfall', 'palmtunnel', 'santamonica'];
     images.forEach(async (img) => {
-      const { type } = await request(app).get(`/original/${img}.jpg`);
+      const { type } = await request(app).get(`/full/${img}.jpg`);
       expect(200);
       expect(type).toEqual('image/jpeg');
     });

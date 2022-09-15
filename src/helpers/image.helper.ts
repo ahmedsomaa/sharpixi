@@ -68,7 +68,7 @@ export const resolveToSourceAndTarget = (
   inputFileName: string,
   outputFileName: string
 ): ImageFile => {
-  const source = path.join(resolveImageDirectoryPath('original'), inputFileName);
+  const source = path.join(resolveImageDirectoryPath('full'), inputFileName);
   const target = path.join(resolveImageDirectoryPath('thumbs'), outputFileName);
   return { source, target };
 };

@@ -54,8 +54,8 @@ const resize = async (req: Request, res: Response) => {
     // resized version is found, serve it
     return res.sendFile(path.join(resolveImageDirectoryPath('thumbs'), foundInThumbs.data));
   } else {
-    // no resized version -> look for original file in the original images directory
-    const foundInOriginal: SharpResult = await imageExists(filename, 'original');
+    // no resized version -> look for original file in the full images directory
+    const foundInOriginal: SharpResult = await imageExists(filename, 'full');
 
     if (foundInOriginal.success) {
       // file is found -> resize it with the given height & width
@@ -134,8 +134,8 @@ const convert = async (req: Request, res: Response) => {
     // converted version found, server it
     return res.sendFile(path.join(resolveImageDirectoryPath('thumbs'), filteredByExtension[0]));
   } else {
-    // no converted version -> look for original file in the original images directory
-    const searchOriginal: SharpResult = await imageExists(filename, 'original');
+    // no converted version -> look for original file in the full images directory
+    const searchOriginal: SharpResult = await imageExists(filename, 'full');
 
     if (searchOriginal.success) {
       // file is found -> convert it to the given format

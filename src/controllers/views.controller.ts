@@ -5,7 +5,7 @@ import { mapImageWithPath } from '../util';
 import path from 'path';
 
 const resizer = async (req: Request, res: Response) => {
-  const original = await getAllImages('original');
+  const original = await getAllImages('full');
   const thumbs = await getAllImages('thumbs');
   const mapped = original?.map(mapImageWithPath);
   const resized = thumbs
@@ -24,7 +24,7 @@ const resizer = async (req: Request, res: Response) => {
 };
 
 const converter = async (req: Request, res: Response) => {
-  const original = await getAllImages('original');
+  const original = await getAllImages('full');
   const thumbs = await getAllImages('thumbs');
   const mapped = original?.map(mapImageWithPath);
   const converted = thumbs

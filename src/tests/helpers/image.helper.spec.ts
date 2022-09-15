@@ -12,7 +12,7 @@ describe('-- Image helper Tests Suite', (): void => {
   describe('--- imageExists method', (): void => {
     const filename = 'fjord.jpg';
     it('sholud return file name with extension if file exists in directory', async (): Promise<void> => {
-      const resolved: SharpResult = await imageExists('fjord', 'original');
+      const resolved: SharpResult = await imageExists('fjord', 'full');
       expect(resolved.success).toEqual(true);
       expect(resolved.data).toEqual(filename);
     });
@@ -25,7 +25,7 @@ describe('-- Image helper Tests Suite', (): void => {
 
   describe('--- getAllImages method', (): void => {
     it('should return list of 5 images', async (): Promise<void> => {
-      const images = await getAllImages('original');
+      const images = await getAllImages('full');
       expect(Array.isArray(images)).toEqual(true);
       expect(images?.length).toEqual(5);
     });
@@ -33,8 +33,8 @@ describe('-- Image helper Tests Suite', (): void => {
 
   describe('--- resolveImageDirectoryPath method', (): void => {
     it('sholud return directory full path as string', (): void => {
-      const directoryPath = resolveImageDirectoryPath('original');
-      const correctPath = path.join(__dirname, '..', '..', '..', 'images', 'original');
+      const directoryPath = resolveImageDirectoryPath('full');
+      const correctPath = path.join(__dirname, '..', '..', '..', 'images', 'full');
       expect(directoryPath).toEqual(correctPath);
       expect(typeof directoryPath).toBe('string');
     });

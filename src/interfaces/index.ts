@@ -1,7 +1,7 @@
 // Custom type for valid image directories
 // originl -> original photos
 // thumbs -> edited photos
-export type ImageDirectory = 'original' | 'thumbs';
+export type ImageDirectory = 'full' | 'thumbs';
 
 // supported image formats for conversion
 export type ImageFormat = 'png' | 'jpg' | 'avif' | 'jpeg' | 'webp';

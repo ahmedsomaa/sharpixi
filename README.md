@@ -76,7 +76,7 @@ The tests are written in jasmine. To run the tests: `npm run build && npm run te
 - `/api/convert` to convert an image qith a given query string to the given format for example
   `?filename=fjord&format=png`. Supported conversion types are `[jpg, png, avif, jpeg, wbep]`.
 
-- `/{original | thumbs}/{image_name}` to serve static image files for example `/original/fjord.jpg`.
+- `/{full | thumbs}/{image_name}` to serve static image files for example `/full/fjord.jpg`.
 
 ## Demo
 
