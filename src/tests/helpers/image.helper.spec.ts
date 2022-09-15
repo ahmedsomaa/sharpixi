@@ -6,6 +6,8 @@ import {
   resolveToSourceAndTarget
 } from '../../helpers/image.helper';
 
+import path from 'path';
+
 describe('-- Image helper Tests Suite', (): void => {
   describe('--- imageExists method', (): void => {
     const filename = 'fjord.jpg';
@@ -32,9 +34,8 @@ describe('-- Image helper Tests Suite', (): void => {
   describe('--- resolveImageDirectoryPath method', (): void => {
     it('sholud return directory full path as string', (): void => {
       const directoryPath = resolveImageDirectoryPath('original');
-      expect(directoryPath).toEqual(
-        'C:\\Users\\ahmedsomaa\\Documents\\Projects\\eg-fwd\\image-processing-api\\images\\original'
-      );
+      const correctPath = path.join(__dirname, '..', '..', '..', 'images', 'original');
+      expect(directoryPath).toEqual(correctPath);
       expect(typeof directoryPath).toBe('string');
     });
   });
