@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// set the view engine to ejs
+// set the view engine to hbs
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -42,8 +42,6 @@ app.use(express.static('images'));
 
 // use application routes
 app.use(indexRouter);
-
-// console.log(app);
 
 // start app
 app.listen(PORT, (): void => {
