@@ -5,20 +5,23 @@ import path from 'path';
 
 /**
  * checks for a file in a given directory
- * async
+ * @async
  * @param {string} filename - name of the file to look for
- * @param {validImageDirectory} directory - name of the directory to look in
- * @returns {Promise<boolean>} if the file is found in the directory or not
+ * @param {ImageDirectory} directory - name of the directory to look in
+ * @returns {Promise<SharpResult>} if the file is found in the directory or not
  */
 export const imageExists = async (
   filename: string,
   directory: ImageDirectory
 ): Promise<SharpResult> => {
   try {
+    // retrieve all images in the given directory
     const images = await getAllImages(directory);
     if (!images) {
+      // if directory is empty, return false
       return { success: false, data: `${directory} directory is empty.` };
     } else {
+      // check for file match in the directory
       const hasMatch = images.filter((image) => image.split('.')[0] === filename);
       return hasMatch.length !== 0
         ? { success: true, data: hasMatch.toString() }
@@ -35,15 +38,15 @@ export const imageExists = async (
 
 /**
  * returns all files in a directory
- * async
- * @param {validImageDirectory} directory - name of the directory to read
+ * @async
+ * @param {ImageDirectory} directory - name of the directory to read
  * @returns {Promise<string[] | null>} list of image names in the directory or nothing
  */
 export const getAllImages = async (directory: ImageDirectory): Promise<string[] | null> => {
   const resolved = resolveImageDirectoryPath(directory);
   try {
     await fs.access(resolved);
-    const images = await await fs.readdir(resolved);
+    const images = await fs.readdir(resolved);
     return images;
   } catch {
     return null;
@@ -52,7 +55,7 @@ export const getAllImages = async (directory: ImageDirectory): Promise<string[] 
 
 /**
  * resolves a path for a given directory name
- * @param {validImageDirectory} directory - name of the directorty to resolve its path
+ * @param {ImageDirectory} directory - name of the directorty to resolve its path
  * @returns {string} the resolved path of the given directory
  */
 export const resolveImageDirectoryPath = (directory: ImageDirectory): string =>
