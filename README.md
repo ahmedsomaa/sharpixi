@@ -79,7 +79,7 @@ The tests are written in jasmine. To run the tests: `npm run build && npm run te
 
 - `/api/resize` to resize an image with a given query string for example `?filename=fjord&width=200&height=600`.
 
-- `/api/convert` to convert an image qith a given query string to the given format for example
+- `/api/convert` to convert an image with a given query string to the given format for example
   `?filename=fjord&format=png`. Supported conversion types are `[jpg, png, avif, jpeg, webp]`.
 
 - `/{full | thumbs}/{image_name}` to serve static image files for example `/full/fjord.jpg`.
