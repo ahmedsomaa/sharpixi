@@ -6,6 +6,7 @@ import sharp from 'sharp';
 
 /**
  * resize an image with the given sizes
+ * @async
  * @param {ResizeQuery} {filename, width, height} - filename, width, height to use for reszie
  * @returns {Promise<SharpResult>} the new resized file path
  */
@@ -31,6 +32,7 @@ export const resize = async ({ width, height, filename }: ResizeQuery): Promise<
 
 /**
  * convert an image to a given format
+ * @async
  * @param {ConvertQuery} {filename, format} -- filename & format to use for convert
  * @returns {Promise<SharpResult>} the new converted image file path
  */
