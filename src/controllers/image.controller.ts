@@ -9,11 +9,12 @@ import { validationResult } from 'express-validator';
 
 /**
  * Image Controller for Resize Route
- * @param {Request} req -- http request object to handle
+ * @async
+ * @param {Request} req -- http request to handle
  * @param {Response} res -- http response to send
- * @returns {void}
+ * @returns {Promise<void>}
  */
-const resize = async (req: Request, res: Response) => {
+const resize = async (req: Request, res: Response): Promise<void> => {
   // get query params validaion errors
   const result = validationResult(req).formatWith(({ param, msg }) => ({
     param,
@@ -87,11 +88,12 @@ const resize = async (req: Request, res: Response) => {
 
 /**
  * Image Controller for Convert Route
- * @param {Request} req -- http request object to handle
+ * @async
+ * @param {Request} req -- http request to handle
  * @param {Response} res -- http response to send
- * @returns {void}
+ * @returns {Promise<void>}
  */
-const convert = async (req: Request, res: Response) => {
+const convert = async (req: Request, res: Response): Promise<void> => {
   // get query params validaion errors
   const result = validationResult(req).formatWith(({ param, msg }) => ({
     param,
